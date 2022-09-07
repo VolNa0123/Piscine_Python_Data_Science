@@ -1,4 +1,5 @@
 import sys
+from random import randint
 
 class Research:
     def __init__(self, file_name):
@@ -31,9 +32,23 @@ class Research:
             y = [y[1] for y in self.data]
             return [sum(x), sum(y)]
 
-        def fractions(list_counts):
-            return [(counts[0] / (counts[0] + counts[1])) * 100,
-                    (counts[1] / (counts[0] + counts[1])) * 100]
+        def fractions(self):
+            return [(self.count[0] / (self.count[0] + self.count[1])) * 100,
+                    (self.count[1] / (self.count[0] + self.count[1])) * 100]
+
+
+    class Analytics(Calculations):
+        def __init__(self, n_steps):
+            self.n_steps = n_steps
+            self.predict = self.predict_random()
+            self.predict_last = self.predict_last()
+
+        def predict_random(self):
+            predict_dict = {0: [0, 1], 1: [1, 0]}
+            return [predict_dict[randint(0, 1)] for x in range(self.n_steps)]
+
+        def predict_last(self):
+            return self.predict[-1]
 
 
 def check_arg(file_name):
@@ -48,14 +63,16 @@ def check_arg(file_name):
                 if line[i] != '0,1\n' and line[i] != '1,0\n':
                     raise Exception("Error argument")
 
+
 if __name__ == '__main__':
     if len (sys.argv) != 2 or check_arg(sys.argv[1]):
         raise Exception("Error argument")
-    list_lists = Research(sys.argv[1]).file_reader()
-    print(list_lists)
-    list_counts = Research.Calculations.counts(list_lists)
- #   print(list_counts[0], list_counts[1])
- #   list_fractions = Research.Calculations.fractions(list_counts)
-#    print(list_fractions[0], list_fractions[1])
+    output = Research(sys.argv[1]).file_reader()
+    element = Research.Calculations(output)
+    predict = Research.Analytics(3)
+    print(element.data)
+    print(element.count[0], element.count[1])
+    print(predict.predict)
+    print(predict.predict_last)
 
 # https://younglinux.info/oopython/init
