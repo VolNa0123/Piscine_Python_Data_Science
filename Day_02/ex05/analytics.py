@@ -59,6 +59,6 @@ class Research:
             else:
                 return self.predict[-1]
 
-        def save_file(report, REPORT_FILE, ext='txt'):
-            with open(f'{REPORT_FILE}.{ext}', 'w') as report_file:
+        def save_file(report, REPORT_FILE, EXTENSION):
+            with open(f'{REPORT_FILE}.{EXTENSION}', 'w') as report_file:
                 report_file.write(report)

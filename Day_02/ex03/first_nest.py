@@ -1,7 +1,7 @@
 import sys
 
 class Research:
-    def __init__(self, file_name):
+    def __init__(self, file_name): # Конструктор, который вызывается при инициализации
         self.file_name = file_name
 
     def file_reader(self, has_header = True):
