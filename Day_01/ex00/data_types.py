@@ -17,7 +17,8 @@ def data_types():
               type(g).__name__, type(h).__name__
             )
           )
-          
+
+             
 if __name__ == '__main__':
     data_types()
 
