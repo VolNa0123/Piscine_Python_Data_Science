@@ -32,7 +32,7 @@ def dict_sorter():
     sorted_dict = {k: v for k, v in sorted_list}
 
     # Теперь отсортируем по убыванию номера '-' перед полем сортировки позволяет сортировать по убыванию
-    sorted_list = sorted(my_dict.items(), key=lambda item: -int(item[1]))
+    sorted_list = sorted(my_dict.items(), key=lambda item: (-int(item[1]), item[0]))
 
     # Опять все соберем в словарь.
     sorted_dict = {k: v for k, v in sorted_list}

@@ -23,16 +23,18 @@ def data():
     ]
     return dict(list_of_tuples)
 
-def list_in_set(data_list):
-    set_of_data = set(data_list)
-    for key, value in set_of_data.items():
-        print("\'%s\' : \'%s\'" % (value, key))
-
 def inv_dict():
-    new_dict = data()
+    old_dict = data()
+    my_dict = {}
+    for key in old_dict:
+        my_dict.setdefault(old_dict[key], []).append(key)
+    return my_dict
+
+def print_dict():
+    new_dict = inv_dict()
     for key, value in new_dict.items():
-        print("\'%s\' : \'%s\'" % (value, key))
+        for i in range(len(value)):
+            print("\'%s\' : \'%s\'" % (key, value[i]))
 
 if __name__ == '__main__':
-    #inv_dict()
-    list_in_set()
+    print_dict()

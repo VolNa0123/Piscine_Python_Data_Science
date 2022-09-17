@@ -3,7 +3,7 @@ import sys
 def names_extractor():
 # Контекстный менеджер with сам закроет файл после прочтения и позаботится об ошибках
   with open('employees.tsv', 'a') as f_write: # 'a' чтобы write дозаписывал, а не перезаписывал
-    f_write.write('Name\tSurname\tE-mail\n')
+    f_write.write('Name\tSurname\tE-mail\n') # Запишем шапку
 # Файл email.tsv(любой ваш) должен лежать в этой же директории
     with open('email.tsv', 'r') as f_read:
       line = f_read.readlines() # создали список строк файла(отдельных email)
