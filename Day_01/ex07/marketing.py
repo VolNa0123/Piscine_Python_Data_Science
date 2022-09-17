@@ -19,15 +19,15 @@ def marketing():
 
     # Выполним запрошенную задачу
     if sys.argv[1] == 'call_center':
-        print(list1_minus_list2(contact_list, recipients))
+        print('clients =', list1_minus_list2(contact_list, recipients))
     if sys.argv[1] == 'potential_clients':
-        print(list1_minus_list2(participants, clients))
+        print('participants =', list1_minus_list2(participants, clients))
     if sys.argv[1] == 'loyalty_program':
-        print(list1_minus_list2(clients, participants))
+        print('recipients =', list1_minus_list2(clients, participants))
 
 if __name__ == '__main__':
     # Проверим правильность аргументов
-    if len (sys.argv) != 2 or (sys.argv[1] != 'calpotential_clientsl_center' and sys.argv[1] != 'potential_clients' and sys.argv[1] != 'loyalty_program'):
+    if len (sys.argv) != 2 or (sys.argv[1] != 'call_center' and sys.argv[1] != 'potential_clients' and sys.argv[1] != 'loyalty_program'):
         raise Exception("Error argument")
     marketing()
 

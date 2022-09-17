@@ -9,14 +9,15 @@ def data_types():
     g = ('a', 2, True)
     h = set(g)
 
-    vars =  [
-            type(a).__name__, type(b).__name__ ,
-            type(c).__name__, type(d).__name__,
-            type(e).__name__, type(f).__name__ ,
-            type(g).__name__, type(h).__name__
-            ]
+    print('[%s, %s, %s, %s, %s, %s, %s, %s]'
+          % (
+              type(a).__name__, type(b).__name__ , #__name__ для того, чтобы выводилось только имя класса
+              type(c).__name__, type(d).__name__,
+              type(e).__name__, type(f).__name__ ,
+              type(g).__name__, type(h).__name__
+            )
+          )
 
-    print(vars)
-          
+             
 if __name__ == '__main__':
     data_types()

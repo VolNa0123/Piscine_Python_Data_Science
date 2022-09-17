@@ -3,7 +3,7 @@ def read_and_write():
 #    text = infile.read().replace('\",\"', '\"\t')
     outfile = open('hh.tsv', 'w')
  #   outfile.write(text)
-    outfile.write(infile.read().replace('\",\"', '\"\t'))
+    outfile.write(infile.read().replace('\",\"', '\"\t\"'))
 
 if __name__ == '__main__':
     read_and_write()
