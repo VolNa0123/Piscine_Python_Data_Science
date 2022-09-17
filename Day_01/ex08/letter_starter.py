@@ -7,7 +7,7 @@ def letter_starter():
     for i in range(len(line)):
       if line[i].split('\t')[2] == sys.argv[1] + '\n': # Если email совпал с заданным, выполняем
         name = line[i].split('\t')[0]
-        print(f'Dear {name}, welcome to our team. We are sure that it will be a pleasure to work with you. That’s a precondition for the professionals that our company hires.')
+      print(f'Dear {name}, welcome to our team. We are sure that it will be a pleasure to work with you. That’s a precondition for the professionals that our company hires.')
     if name == '': # Если заданный email не встретился выводим ошибку
       print('Error email')
 
