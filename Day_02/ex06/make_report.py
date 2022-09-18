@@ -4,22 +4,38 @@ import logging
 import json
 import requests
 
+    # Отправим сообщение в телеграмм
+def send_in_telegramm(text):
+    token = "5464113755:AAFN0dPEiUnsamwtzTa6HkhUJWSjWwo21V8"
+    chat_id = "498146952"
+    url_req = "https://api.telegram.org/bot" + token + "/sendMessage" + "?chat_id=" + chat_id + "&text=" + text 
+    results = requests.get(url_req)
+    if results.status_code != 200:
+        raise Exception(f'Error server {results.status_code}')
+
 def check_arg(file_name):
     logging.info("Check arguments")
     with open(file_name, 'r') as file:
         line = file.readlines()
         # Если пустой файл или одна строка, но не с нужными значениями, то исключение
         if len(line) == 0 or (len(line) == 1 and (line[0] != '0,1\n' and line[0] != '1,0\n')):
-            # requests.post(HOOK, json.dumps(REPORT_FAIL))
+            send_in_telegramm('The report hasn’t been created due to an error')
             raise Exception("Error argument")
         # Проверяем остальные строки на нужные значения
         if len(line) > 1:
             for i in range(1, len(line) - 1):
                 if line[i] != '0,1\n' and line[i] != '1,0\n':
-                    # requests.post(HOOK, json.dumps(REPORT_FAIL))
+                    send_in_telegramm('The report hasn’t been created due to an error')
                     raise Exception("Error argument")
 
-
+# У меня на машине для правильного запуска надо запустить виртуальную машину,
+# так как конфликт версий питона и не импортируется requests
+# надо написать в командной строке 
+# mkdir test          
+# python3 -m venv test
+# source test/bin/activate
+# pip3 install requests
+# после этого запускать
 def main():
     logging.basicConfig(filename=f'{LOG_FILE}.{EXTENSION_LOG}', 
                         format='%(asctime)s %(message)s',
@@ -27,7 +43,7 @@ def main():
                         filemode='w',
                         level=logging.DEBUG)
     if check_arg(FILEPATH):
-        requests.post(HOOK, json.dumps(REPORT_FAIL))
+        send_in_telegramm('The report hasn’t been created due to an error')
         raise Exception("Error argument")
     output = Research(FILEPATH).file_reader()
     element = Research.Calculations(output)
@@ -52,17 +68,8 @@ def main():
         )
 
     Research.Analytics.save_file(report, REPORT_FILE, EXTENSION)
-
-    # Отправим сообщение в телеграмм
-    text = 'The report has been successfully created'
-    token = "5464113755:AAFN0dPEiUnsamwtzTa6HkhUJWSjWwo21V8"
-    chat_id = "498146952"
-    url_req = "https://api.telegram.org/bot" + token + "/sendMessage" + "?chat_id=" + chat_id + "&text=" + text 
-    results = requests.get(url_req)
-    if results.status_code != 200:
-        raise Exception(f'Error server {results.status_code}')
-
-    #requests.post(HOOK, json.dumps(REPORT_OK))
+    send_in_telegramm('The report has been successfully created')
+    
 
 if __name__ == '__main__':
     main()
