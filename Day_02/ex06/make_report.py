@@ -10,13 +10,13 @@ def check_arg(file_name):
         line = file.readlines()
         # Если пустой файл или одна строка, но не с нужными значениями, то исключение
         if len(line) == 0 or (len(line) == 1 and (line[0] != '0,1\n' and line[0] != '1,0\n')):
-            requests.post(HOOK, json.dumps(REPORT_FAIL))
+            # requests.post(HOOK, json.dumps(REPORT_FAIL))
             raise Exception("Error argument")
         # Проверяем остальные строки на нужные значения
         if len(line) > 1:
             for i in range(1, len(line) - 1):
                 if line[i] != '0,1\n' and line[i] != '1,0\n':
-                    requests.post(HOOK, json.dumps(REPORT_FAIL))
+                    # requests.post(HOOK, json.dumps(REPORT_FAIL))
                     raise Exception("Error argument")
 
 
@@ -52,7 +52,17 @@ def main():
         )
 
     Research.Analytics.save_file(report, REPORT_FILE, EXTENSION)
-    requests.post(HOOK, json.dumps(REPORT_OK))
+
+    # Отправим сообщение в телеграмм
+    text = 'The report has been successfully created'
+    token = "5464113755:AAFN0dPEiUnsamwtzTa6HkhUJWSjWwo21V8"
+    chat_id = "498146952"
+    url_req = "https://api.telegram.org/bot" + token + "/sendMessage" + "?chat_id=" + chat_id + "&text=" + text 
+    results = requests.get(url_req)
+    if results.status_code != 200:
+        raise Exception(f'Error server {results.status_code}')
+
+    #requests.post(HOOK, json.dumps(REPORT_OK))
 
 if __name__ == '__main__':
     main()

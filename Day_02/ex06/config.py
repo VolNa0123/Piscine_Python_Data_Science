@@ -7,7 +7,10 @@ EXTENSION_LOG = 'log'
 
 REPORT_OK = 'The report has been successfully created'
 REPORT_FAIL = 'The report hasn’t been created due to an error'
-HOOK = 'https://hooks.slack.com/services/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'
+# URL = 'https://api.telegram.org/bot'
+# TOKEN = "5464113755:AAFN0dPEiUnsamwtzTa6HkhUJWSjWwo21V8"
+# CHANNEL_ID = "@DS_Piscine"
+
 
 REPORT = 'Report\n' \
 + 'We have made {} observations from tossing a coin: {} of them were tails and {}' \

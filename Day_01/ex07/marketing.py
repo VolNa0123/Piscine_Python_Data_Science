@@ -16,7 +16,7 @@ def marketing():
     contact_list = clients + participants
     # Уберем из этого списка повторы путем конвертации в набор(set) (набор не содержит повторяющихся элементов)
     contact_list = list(set(contact_list))
-
+    contact_set = set(contact_list)
     # Выполним запрошенную задачу
     #Закомментирован код, который отвечает заданию, оставлен код для чек-листа
 #    if sys.argv[1] == 'call_center':
