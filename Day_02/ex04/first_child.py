@@ -71,10 +71,8 @@ if __name__ == '__main__':
     output = Research(sys.argv[1]).file_reader()
     element = Research.Calculations(output)
     predict = Research.Analytics(3)
-    fractions = Research.Calculations.fractions(element)
     print(element.data)
     print(element.count[0], element.count[1])
-    print(round(fractions[0], 2), round(fractions[1], 2))
     print(predict.predict)
     print(predict.predict_last)
 

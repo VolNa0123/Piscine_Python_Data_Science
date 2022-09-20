@@ -16,23 +16,18 @@ def marketing():
     contact_list = clients + participants
     # Уберем из этого списка повторы путем конвертации в набор(set) (набор не содержит повторяющихся элементов)
     contact_list = list(set(contact_list))
-    contact_set = set(contact_list)
+
     # Выполним запрошенную задачу
-    #Закомментирован код, который отвечает заданию, оставлен код для чек-листа
-#    if sys.argv[1] == 'call_center':
-#        print('clients =', list1_minus_list2(contact_list, recipients))
     if sys.argv[1] == 'call_center':
-        lst = list1_minus_list2(clients, recipients)
-        lst.append('jessica@gmail.com')
-        print('clients =', lst)
+        print(list1_minus_list2(contact_list, recipients))
     if sys.argv[1] == 'potential_clients':
-        print('participants =', list1_minus_list2(participants, clients))
+        print(list1_minus_list2(participants, clients))
     if sys.argv[1] == 'loyalty_program':
-        print('recipients =', list1_minus_list2(clients, participants))
+        print(list1_minus_list2(clients, participants))
 
 if __name__ == '__main__':
     # Проверим правильность аргументов
-    if len (sys.argv) != 2 or (sys.argv[1] != 'call_center' and sys.argv[1] != 'potential_clients' and sys.argv[1] != 'loyalty_program'):
+    if len (sys.argv) != 2 or (sys.argv[1] != 'calpotential_clientsl_center' and sys.argv[1] != 'potential_clients' and sys.argv[1] != 'loyalty_program'):
         raise Exception("Error argument")
     marketing()
 

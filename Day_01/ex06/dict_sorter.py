@@ -24,8 +24,15 @@ def dict_sorter():
     # Создадим из списка словарь (нужно по заданию)
     my_dict = dict((x, y) for x, y in list_of_tuples)
 
-    # Отсортируем по убыванию номера и возрастанию букв. '-' перед полем сортировки позволяет сортировать по убыванию
-    sorted_list = sorted(my_dict.items(), key=lambda item: (-int(item[1]), item[0]))
+    # Отсортируем страны по алфавиту так как удобно сортировать по ключу
+    # Сортировка возвращает список
+    sorted_list = sorted(my_dict.items(), key=lambda item: item[0])
+
+    # Для второй сортировки опять создадим словарь
+    sorted_dict = {k: v for k, v in sorted_list}
+
+    # Теперь отсортируем по убыванию номера '-' перед полем сортировки позволяет сортировать по убыванию
+    sorted_list = sorted(my_dict.items(), key=lambda item: -int(item[1]))
 
     # Опять все соберем в словарь.
     sorted_dict = {k: v for k, v in sorted_list}

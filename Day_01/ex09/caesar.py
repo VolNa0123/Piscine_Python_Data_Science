@@ -4,18 +4,14 @@ def caesar(code, phrase, n):
     if code == 'decode':
         n *= -1
     new_phrase = ''
-    alphabet1 = 'abcdefghijklmnopqrstuvwxyz'
-    alphabet2 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
     # Пройдемся по каждой букве фразы
-    # Если это буква, заменим ее в соответствии со сдвигом
-    # Сдвиг зациклим через остатки от деления
     for i in range(len(phrase)):
-        if phrase[i] in alphabet1:
-            m = alphabet1.find(phrase[i])
-            new_phrase += alphabet1[(n + m) % len(alphabet1)]
-        elif phrase[i] in alphabet2:
-            m = alphabet2.find(phrase[i])
-            new_phrase += alphabet2[(n + m) % len(alphabet2)]
+    # Если это буква, заменим ее в соответствии со сдвигом
+        if phrase[i] in alphabet:
+            m = alphabet.find(phrase[i])
+    # Сдвиг зациклим через остатки от деления
+            new_phrase += alphabet[(n + m) % len(alphabet)]
     # Если это не буква, просто скопируем
         else:
             new_phrase += phrase[i]

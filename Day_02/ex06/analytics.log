@@ -1,13 +1,11 @@
-22-18-09 21:13:37 Check arguments
-22-18-09 21:13:37 An instance of the Research class is created
-22-18-09 21:13:37 Research.file_reader(): Input file read 
-22-18-09 21:13:37 An instance of the Calculations class is created
-22-18-09 21:13:37 Calculations.counts(): Counted the number of heads and tails
-22-18-09 21:13:37 Calculations.fractions(): Percentage of heads and tails calculated
-22-18-09 21:13:37 An instance of the Analytics class is created
-22-18-09 21:13:37 Analytics.predict_random(): Random sample created
-22-18-09 21:13:37 Analytics.predict_last(): Found the last element of the selection
-22-18-09 21:13:37 Analytics.counts(): Counted the number of heads and tails
-22-18-09 21:13:37 Analytics.save_file(): Report saved
-22-18-09 21:13:37 Starting new HTTPS connection (1): api.telegram.org:443
-22-18-09 21:13:38 https://api.telegram.org:443 "GET /bot5464113755:AAFN0dPEiUnsamwtzTa6HkhUJWSjWwo21V8/sendMessage?chat_id=498146952&text=The%20report%20has%20been%20successfully%20created HTTP/1.1" 200 318
+22-08-09 14:13:14 Check arguments
+22-08-09 14:13:14 An instance of the Research class is created
+22-08-09 14:13:14 Research.file_reader(): Input file read 
+22-08-09 14:13:14 An instance of the Calculations class is created
+22-08-09 14:13:14 Calculations.counts(): Counted the number of heads and tails
+22-08-09 14:13:14 Calculations.fractions(): Percentage of heads and tails calculated
+22-08-09 14:13:14 An instance of the Analytics class is created
+22-08-09 14:13:14 Analytics.predict_random(): Random sample created
+22-08-09 14:13:14 Analytics.predict_last(): Found the last element of the selection
+22-08-09 14:13:14 Analytics.counts(): Counted the number of heads and tails
+22-08-09 14:13:14 Analytics.save_file(): Report saved
