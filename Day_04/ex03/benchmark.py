@@ -2,30 +2,43 @@ import timeit
 import sys
 from functools import reduce
 
-# Функция находит сумму квадратов до заданного числа с помощью цикла
-def loop_and_sum(n):
-    sum_square = 0
-    for i in range(1, n + 1):
-        sum_square += i * i
-        return sum_square
+def lloop(n):
+	sum_square = 0
+	for i in range(1, n + 1):
+		sum_square += i * i
+		return sum_square
 
-# Функция находит сумму квадратов до заданного числа с помощью reduce
-# Функция reduce() модуля functools применяет функцию к элементам итерируемой iterable последовательности
-def reduce_and_sum(n):
-    sum_square = reduce(lambda y, x: y + x**2, range(1, n+1))
-    return sum_square
+def rreduce(n):
+	sum_square = reduce(lambda y, x: y + x**2, range(1, n+1))
+	return sum_square
 
-def benchmark(command, n_of_calls, n_for_sum):
-    SETUP_CODE = f'from __main__ import {command}'
-    TEST_CODE = f'{command}({n_for_sum})'
-    times = timeit.timeit(setup = SETUP_CODE, stmt = TEST_CODE, number = n_of_calls)
-    print(times)
 
+def my_time(func_name, num, n):
+	times = timeit.timeit(lambda: func_name(n), number = num)
+	return times
+	
 if __name__ == '__main__':
-    if sys.argv[1] == 'loop':
-        command = 'loop_and_sum'
-    else:
-        command = 'reduce_and_sum'
-    benchmark(command, int(sys.argv[2]), int(sys.argv[3]))
+	
+	if len(sys.argv) != 4:
+		raise Exception
+	try:
+		
+		num_one = int(sys.argv[2])
+		num_two = int(sys.argv[3])
 
-# http://pythonicway.com/python-functinal-programming
+		if sys.argv[1] == 'loop':
+			arg = lloop
+		elif sys.argv[1] == 'reduce':
+			arg = rreduce
+		time_arg = my_time(arg, num_one, num_two)
+	except:
+		print('ERROR')
+	else:
+		print(time_arg)
+
+
+
+#list comprehensions - генератор списков
+#map - идет по списку, применяет какую-то функцию к каждому элементу
+#filter - то же самое что и map, только по-другому
+#reduce - Применяет указанную функцию к элементам последовательности. на выходе одно значение

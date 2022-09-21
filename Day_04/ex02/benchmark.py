@@ -1,36 +1,59 @@
 import timeit
 import sys
 
-emails = ['john@gmail.com', 'james@gmail.com', 'alice@yahoo.com', 'anna@live.com', 'philipp@gmail.com']
-emails = emails * 5
+def lloop():
+	emails = ['john@gmail.com', 'james@gmail.com', 'alice@yahoo.com', 'anna@live.com', 'philipp@gmail.com']
+	emails *= 5
 
-# Функция выбирает элементы из списка по условию и добавляет их в новый с помощью цикла
-def loop():
-    new_emails = []
-    for element in emails:
-        if (element.find('@gmail.com') > 0): # Если элемент содержит @gmail.com, то добавляем его
-            new_emails.append(element)
-    return new_emails
+	new_emails = []
+	for element in emails:
+		if (element.find('@gmail.com') > 0): # Если элемент содержит @gmail.com, то добавляем его
+			new_emails.append(element)
+	return new_emails
 
-# Функция выбирает элементы из списка по условию и добавляет их в новый в определении списка
 def list_comprehension():
-    new_emails = [element for element in emails if element.find('@gmail.com') > 0]
-    return new_emails
+	emails = ['john@gmail.com', 'james@gmail.com', 'alice@yahoo.com', 'anna@live.com', 'philipp@gmail.com']
+	emails *= 5
+	new_emails = [element for element in emails if element.find('@gmail.com') > 0]
+	return new_emails
 
-# Функция выбирает элементы из списка по условию и добавляет их в новый методом map
-def with_a_map():
-    new_emails = map(lambda x: x if (element.find('@gmail.com')) else None , emails)
-    return new_emails
+def mmap():
+	emails = ['john@gmail.com', 'james@gmail.com', 'alice@yahoo.com', 'anna@live.com', 'philipp@gmail.com']
+	emails *= 5
+	new_emails = map(lambda x: x if (element.find('@gmail.com')) else None , emails) #если эл-т не подходит, то ставим None
+	return new_emails
 
-# Функция выбирает элементы из списка по условию и добавляет их в новый методом filter
-def with_a_filter():
-    new_emails = filter(lambda x: x if (element.find('@gmail.com')) else None , emails)
-    return new_emails
+def filter():
+	emails = ['john@gmail.com', 'james@gmail.com', 'alice@yahoo.com', 'anna@live.com', 'philipp@gmail.com']
+	emails *= 5
+	new_emails = filter(lambda x: x if (element.find('@gmail.com')) else None , emails)
+	return new_emails
 
-def benchmark(function, n_of_calls):
-    SETUP_CODE = f'from __main__ import {function}'
-    times = timeit.timeit(setup = SETUP_CODE, number = n_of_calls)
-    print(times)
-
+def my_time(func_name, num):
+	times = timeit.timeit(func_name, number = num)
+	return times
+	
 if __name__ == '__main__':
-    benchmark(sys.argv[1], int(sys.argv[2]))
+	
+	if len(sys.argv) != 3:
+		raise Exception
+	try:
+		num = int(sys.argv[2])
+
+		if sys.argv[1] == 'loop':
+			arg = lloop
+		elif sys.argv[1] == 'list_comprehension':
+			arg = list_comprehension
+		elif sys.argv[1] == 'map':
+			arg = mmap
+		time_arg = my_time(arg, num)
+	except:
+		print('ERROR')
+	else:
+		print(time_arg)
+
+
+
+#list comprehensions - генератор списков
+#map - идет по списку, применяет какую-то функцию к каждому элементу
+#filter - то же самое что и map, только по-другому
